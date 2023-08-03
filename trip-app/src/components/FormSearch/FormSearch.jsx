@@ -6,7 +6,7 @@ import iconClose from '../../images/x-circle.svg';
 
 const FormSearch = ({ onSubmit, onChange, value, onClose, isHiden }) => {
   return (
-<form onSubmit={onSubmit}>
+<form onSubmit={onSubmit} className={css.searchForm}>
       <label htmlFor="search">
         <input
           type="text"

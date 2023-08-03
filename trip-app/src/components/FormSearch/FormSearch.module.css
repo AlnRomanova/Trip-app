@@ -1,48 +1,43 @@
-.form {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 28px;
-  margin-bottom: 40px;
+.searchForm {
+  margin: 50px 0;
 }
 
 label {
-position: relative;
+  position: relative;
 }
 
 input {
-    width: 280px;
-    height: 43px;
-    background: #eff2f6;
-    border-radius: 10px;
-    border: none;
-    padding: 9px 12px;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 1.4;
-    outline: transparent;
+  width: 250px;
+  height: 43px;
+  background: #eff2f6;
+  border-radius: 10px;
+  border: none;
+  padding: 9px 12px;
+  font-family: "Inter";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
 }
 
-input:hover, input:focus  {
-    border: 1px solid rgba(123, 175, 240, 0.5);
-    box-shadow: rgb(62, 101, 152);
-    border-radius: 20px;
+input:hover,
+input:focus {
+  border: 1px solid rgba(123, 175, 240, 0.5);
+  box-shadow: rgb(62, 101, 152);
+  border-radius: 20px;
 }
 
-
-.searchButton, .closeButton {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    position: absolute;
-    left: 8px;
-    top: 30%;
+.searchButton,
+.closeButton {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  position: absolute;
+  left: 8px;
+  top: 30%;
 }
-
 
 .icon {
-    width: 15px;
-    height: 15px;
-    display: block;
+  width: 15px;
+  height: 15px;
+  display: block;
 }

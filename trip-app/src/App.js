@@ -1,16 +1,20 @@
 import React from 'react';
 import Modal from './components/Modal/Modal';
 import FormSearch from './components/FormSearch/FormSearch';
+import TripsList from './components/TripsList/TripsList';
+import Sidebar from './components/Sidebar/Sidebar';
 
 
 
 function App() {
   return (
-    <div>
-  <h1>hello world</h1>
+    <div className='container'>
+  <h1>Weather Forecast</h1>
 <FormSearch></FormSearch>
+<TripsList></TripsList>
   <Modal></Modal>
-    </div>
+<Sidebar/>
+   </div>
   );
 }
 
