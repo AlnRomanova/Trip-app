@@ -6,7 +6,7 @@ label {
   position: relative;
 }
 
-input {
+.searchInput{
   width: 250px;
   height: 43px;
   background: #eff2f6;
@@ -33,11 +33,18 @@ input:focus {
   cursor: pointer;
   position: absolute;
   left: 8px;
-  top: 30%;
+  top: 0;
+ 
+}
+
+.searchInput::placeholder {
+  padding-left: 40px;
+  font-size: 18px;
 }
 
 .icon {
-  width: 15px;
-  height: 15px;
+  width: 25px;
+  height: 25px;
   display: block;
+  fill: black;
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from './components/Modal/Modal';
+// import Modal from './components/Modal/Modal';
 import FormSearch from './components/FormSearch/FormSearch';
 import TripsList from './components/TripsList/TripsList';
 import Sidebar from './components/Sidebar/Sidebar';
@@ -14,7 +14,7 @@ function App() {
 <FormSearch></FormSearch>
 <TripsList></TripsList>
 <WeekList/>
-  <Modal></Modal>
+  {/* <Modal></Modal> */}
 <Sidebar/>
    </div>
   );

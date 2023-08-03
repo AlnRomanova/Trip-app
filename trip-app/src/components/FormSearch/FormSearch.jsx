@@ -8,7 +8,7 @@ const FormSearch = ({ onSubmit, onChange, value, onClose, isHiden }) => {
   return (
 <form onSubmit={onSubmit} className={css.searchForm}>
       <label htmlFor="search">
-        <input
+        <input className={css.searchInput}
           type="text"
           name="search"
           id="search"
@@ -18,11 +18,11 @@ const FormSearch = ({ onSubmit, onChange, value, onClose, isHiden }) => {
         />
         {!isHiden ? (
           <button className={css.searchButton}  disabled={!value}>
-            <svg  className={css.icon} src={iconSearch} />
+            <img className={css.icon} src={iconSearch} alt="" />
           </button>
         ) : (
           <button className={css.closeButton} type="button" onClick={onClose}>
-            <svg className={css.icon}  src={iconClose} />
+           <img className={css.icon} src={iconClose} alt="" />
           </button>
         )}
       </label>
