@@ -9,3 +9,65 @@
   background-color: rgb(15, 15, 57);
 }
 
+.sidebarImg {
+  float: right;
+  padding: 20px;
+  width: 100px;
+  height: 100px;
+}
+
+
+.sidebarContainer {
+  margin-top: 250px;
+  color: white;
+  text-align: center;
+}
+
+
+.sidebarTitle, .sidebarDegrees {
+  font-size: 50px;
+  font-weight: 700;
+  padding-bottom: 25px;
+
+}
+
+.sidebarWrap{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+
+}
+
+.sidebarDegrees{
+font-size: 60px;
+}
+.sidebarCity {
+  font-size: 30px;
+}
+
+.sidebarList {
+  margin-top: 130px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+}
+
+.sidebarItem {
+  width: 100px;
+  height: 100px;
+  margin-right: 45px;
+  color: white;
+ 
+}
+
+.sidebarDate{
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.sidebarDateText{
+  padding-top: 15px;
+  font-size: 15px;
+  text-transform: uppercase;
+}

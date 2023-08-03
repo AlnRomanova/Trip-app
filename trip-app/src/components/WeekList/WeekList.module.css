@@ -1,0 +1,24 @@
+.weekTitle {
+  margin-top: 35px;
+  margin-bottom: 50px;
+}
+
+.weekList {
+    display: flex;
+    width: 68%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 0 15px;
+  }
+  
+  .weekItem {
+    width: 100px;
+    height: 100px;
+    margin-right: 8px;
+  }
+
+  .weatherImg {
+    padding: 15px 0;
+  }
