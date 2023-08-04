@@ -7,6 +7,7 @@ import addTripIcon from '../../images/addTripIcon.svg';
 import Modal from '../Modal/Modal';
 
 
+
 const TripsList = () => {
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] = useState(false);
 
@@ -51,6 +52,7 @@ const TripsList = () => {
   return (
     <>
       <ul className={css.tripList}>
+      
           <li className={css.tripItem}>
           <img
               className={css.tripDestinationImg}
@@ -84,14 +86,14 @@ const TripsList = () => {
             <p className={css.tripDate}>23.06.2020 - 28.06.2020</p>
             </div>
           </li>
-          <li className={css.addTripItem}>
+          <div className={css.addTripItem}>
             <div className={css.addTripWrap}>
             <button className={css.addTripBtn} onClick={() => handleOpenModal()}>
             <img className={css.addTripIcon} src={addTripIcon} alt="Add Trip Icon" />
             </button>
             <p className={css.addTripText}>Add trip</p>
             </div>
-          </li>
+          </div>
       </ul>
       {isModalAddTransactionOpen && (
            <Modal

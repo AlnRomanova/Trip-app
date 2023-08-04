@@ -1,6 +1,6 @@
 [
     { "id": 1, "name": "Kyiv" },
-    { "id": 2, "name": "Los Angeles"},
+    { "id": 2, "name": "Los Angeles", "photo": "https://www.worldtravelguide.net/wp-content/uploads/2017/07/shu-USA-California-Los-Angeles-Downtown-27584473-Andrew-Zarivny-HERO.jpg"},
     { "id": 3, "name": "London" },
     { "id": 4, "name": "Tokyo" },
     { "id": 5, "name": "Barcelona" },
