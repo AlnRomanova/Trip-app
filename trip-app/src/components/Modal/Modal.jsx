@@ -1,8 +1,11 @@
 import React from "react";
 import css from "../Modal/Modal.module.css";
 import modalCloseIcon from "../../images/closeBtn.svg";
+import cities from '../../cities.json';
 
 const Modal = ({onClose,onClickBackdrop }) => {
+
+console.log(cities.photo)
   return (
     <div className={css.modalWrapperContainer} onSubmit={onClickBackdrop}>
       <div className={css.modalWrap}>
