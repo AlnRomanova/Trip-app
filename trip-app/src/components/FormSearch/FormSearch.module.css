@@ -7,12 +7,12 @@ label {
 }
 
 .searchInput{
-  width: 250px;
+  max-width: 250px;
   height: 43px;
   background: #eff2f6;
   border-radius: 10px;
   border: none;
-  padding: 9px 12px;
+  padding: 9px 12px 9px 45px;
   font-family: "Inter";
   font-weight: 500;
   font-size: 16px;
@@ -33,12 +33,11 @@ input:focus {
   cursor: pointer;
   position: absolute;
   left: 8px;
-  top: 0;
+  top: -2px;
  
 }
 
 .searchInput::placeholder {
-  padding-left: 40px;
   font-size: 18px;
 }
 

@@ -4,7 +4,6 @@ import sidebarImage from "../../images/icons8-penguin-64.png";
 import imageSidebar from '../../images/icons8-cloud-with-rain-48.png';
 
 const Sidebar = () => {
-  console.log(sidebarImage);
   return (
     <section className={css.sidebar}>
       <img className={css.sidebarImg} src={sidebarImage} alt="Add Trip Icon" />

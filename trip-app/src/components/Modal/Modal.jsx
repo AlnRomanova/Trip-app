@@ -2,13 +2,13 @@ import React from "react";
 import css from "../Modal/Modal.module.css";
 import modalCloseIcon from "../../images/closeBtn.svg";
 
-const Modal = ({onClose, onClickBackdrop}) => {
+const Modal = ({onClose,onClickBackdrop }) => {
   return (
-    <div className={css.modalWrapperContainer} onClick={onClickBackdrop}>
+    <div className={css.modalWrapperContainer} onSubmit={onClickBackdrop}>
       <div className={css.modalWrap}>
         <div className={css.formWrapper}>
           <h3 className={css.modalTitle}>Create trip</h3>
-          <form className={css.form} >
+          <form className={css.form}>
             <label className={css.formLabel} htmlFor="title">
               City <span className={css.fieldRequired}>*</span>
             </label>
