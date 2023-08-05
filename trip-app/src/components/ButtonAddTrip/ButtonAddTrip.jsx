@@ -4,7 +4,7 @@ import css from "../ButtonAddTrip/ButtonAddTrip.module.css";
 import addTripIcon from "../../images/addTripIcon.svg";
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip";
 
-const ButtonAddTrip = ({setTrips}) => {
+const ButtonAddTrip = () => {
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] =
     useState(false);
 
@@ -62,7 +62,6 @@ const ButtonAddTrip = ({setTrips}) => {
         <ModalAddTrip
           onCloseModal={handleCloseModal}
           onClickBackdrop={handleBackdrop}
-          setTrips={setTrips}
         />
       )}
     </>

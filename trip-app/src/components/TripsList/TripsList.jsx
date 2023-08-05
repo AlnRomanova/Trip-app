@@ -1,8 +1,10 @@
 import React from "react";
+import { useSelector } from 'react-redux';
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
 
-const TripsList = ({trips, setTrips}) => {
+const TripsList = () => {
+  const trips = useSelector((state) => state.trips.trips);
 console.log(trips)
   return (
     <>
@@ -21,7 +23,7 @@ console.log(trips)
           </li>
         ))}
     
-      <ButtonAddTrip setTrips={setTrips} />  
+      <ButtonAddTrip/>  
       </ul>  
     </>
   );

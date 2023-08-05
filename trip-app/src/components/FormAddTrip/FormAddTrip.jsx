@@ -1,9 +1,14 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
+import { addTrip } from "../../redux/tripsOperation";
 import cities from "../../cities.json";
 import css from "../FormAddTrip/FormAddTrip.module.css";
 
-const FormAddTrip = ({ onCloseModal, setTrips }) => {
+
+const FormAddTrip = ({ onCloseModal }) => {
+  const dispatch = useDispatch();
+  
   const getFormattedDate = (date) => {
     const [year, month, day] = date.toISOString().split("T")[0].split("-");
     return `${year}-${month}-${day}`;
@@ -30,6 +35,7 @@ const FormAddTrip = ({ onCloseModal, setTrips }) => {
     endDate: "",
   });
 
+
   console.log(formData)
 
 
@@ -42,10 +48,7 @@ const FormAddTrip = ({ onCloseModal, setTrips }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.city) {
-      setTrips((prevItems) => [
-        ...prevItems,
-        { ...formData, photo: getCityPhoto(formData.city) },
-      ]);
+      dispatch(addTrip({ ...formData, photo: getCityPhoto(formData.city) }));
       setFormData({ city: "", startDate: "", endDate: "" });
        onCloseModal()
 

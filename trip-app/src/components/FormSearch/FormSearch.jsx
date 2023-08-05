@@ -5,7 +5,6 @@ import iconSearch from "../../images/searchIcon.svg";
 import iconClose from "../../images/x-circle.svg";
 
 const FormSearch = () => {
-  const [trips, setTrips] = useState([]);
   const [isHiden, setIsHiden] = useState(false);
   const [value, setValue] = useState("");
 
@@ -15,7 +14,7 @@ const FormSearch = () => {
     setIsHiden(true);
     const searchQuery = e.currentTarget.elements.search.value.trim();
     if (searchQuery === "") {
-      setTrips(null);
+      // setTrips(null);
       return;
     }
 
@@ -32,7 +31,7 @@ const FormSearch = () => {
 
   const handleCloseBtn = () => {
     setValue("");
-    setTrips(null);
+    // setTrips(null);
     setIsHiden(false);
   };
 
