@@ -12,41 +12,6 @@
   background: white;
 }
 
-.addTripItem {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #eff2f6;
-  width: 220px;
-  height: 200px;
-}
-
-
-.addTripWrap {
-  display: flex; 
-  flex-direction: column;
-}
-.addTripBtn {
-  width: 50px;
-  height: 50px;
-  margin: auto;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-}
-
-.addTripIcon {
-  width: 30px;
-  height: 30px;
-}
-
-.addTripText{
-text-align: center;
-font-size: 25px;
-font-weight: 500;
-}
-
-
 .tripDestinationImg {
   width: 100%;
   height: 70%;

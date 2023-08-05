@@ -1,9 +1,9 @@
 import React from "react";
-import css from "../Modal/Modal.module.css";
+import css from "./ModalAddTrip.module.css";
 import modalCloseIcon from "../../images/closeBtn.svg";
 import FormAddTrip from "../FormAddTrip/FormAddTrip";
 
-const Modal = ({ onClose, onClickBackdrop }) => {
+const ModalAddTrip = ({ onClose, onClickBackdrop }) => {
 
   return (
     <>
@@ -27,4 +27,4 @@ const Modal = ({ onClose, onClickBackdrop }) => {
   );
 };
 
-export default Modal;
+export default ModalAddTrip;
