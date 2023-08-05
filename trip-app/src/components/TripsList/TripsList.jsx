@@ -1,18 +1,17 @@
 import React from "react";
 import css from "../../components/TripsList/TripsList.module.css";
-import pointImage from "../../images/shutterstock_1054558727-1140x694.jpg";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
 
 const TripsList = ({trips, setTrips}) => {
-
+console.log(trips)
   return (
     <>
       <ul className={css.tripList}>
-      {trips.map(({ city, startDate, endDate }) => (
+      {trips.map(({ city, startDate, endDate, photo }) => (
           <li className={css.tripItem} key={city}>
             <img
               className={css.tripDestinationImg}
-              src={pointImage}
+              src={photo}
               alt="city"
             />
             <div className={css.tripInfo}>
@@ -21,8 +20,9 @@ const TripsList = ({trips, setTrips}) => {
             </div>
           </li>
         ))}
+    
+      <ButtonAddTrip setTrips={setTrips} />  
       </ul>  
-      <ButtonAddTrip setTrips={setTrips} />
     </>
   );
 };

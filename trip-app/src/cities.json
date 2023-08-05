@@ -1,12 +1,52 @@
 [
-    { "id": 1, "name": "Kyiv" },
-    { "id": 2, "name": "Los Angeles", "photo": "https://www.worldtravelguide.net/wp-content/uploads/2017/07/shu-USA-California-Los-Angeles-Downtown-27584473-Andrew-Zarivny-HERO.jpg"},
-    { "id": 3, "name": "London" },
-    { "id": 4, "name": "Tokyo" },
-    { "id": 5, "name": "Barcelona" },
-    { "id": 6, "name": "Paris" },
-    { "id": 7, "name": "Porto" },
-    { "id": 8, "name": "Chicago" },
-    { "id": 9, "name": "Amsterdam" },
-    { "id": 10, "name": "Florence" }
+  {
+    "id": 1,
+    "name": "Kyiv",
+    "photo": "https://lp-cms-production.imgix.net/2019-06/a6469f3993128cbcdde6e2b0a90aa1d3-kyiv.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Los Angeles",
+    "photo": "https://media-cdn.tripadvisor.com/media/photo-s/1b/6f/73/1f/losangeles-california.jpg"
+  },
+  {
+    "id": 3,
+    "name": "London",
+    "photo": "https://i2-prod.mirror.co.uk/incoming/article28871026.ece/ALTERNATES/s1200b/0_London-at-sunset.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Tokyo",
+    "photo": "https://www.telegraph.co.uk/content/dam/Travel/Destinations/Asia/Japan/Tokyo/tokyo-things-to-do-lead-image.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Barcelona",
+    "photo": "https://img2.10bestmedia.com/Images/Photos/378847/GettyImages-1085317916_55_660x440.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Paris",
+    "photo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSElhaxE4znnkMocpuW-c6UxiFt0zdNKEh6u-X8EOpGJcwnl8GatA92bIxhHQWAygz3uNc&usqp=CAU"
+  },
+  {
+    "id": 7,
+    "name": "Porto",
+    "photo": "https://a.cdn-hotels.com/gdcs/production63/d486/6c4a6a3d-15f2-4fe5-a27c-3038c47e773b.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Chicago",
+    "photo": "https://e3.365dm.com/23/07/2048x1152/skynews-chicago-city-illinois_6222545.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Amsterdam",
+    "photo": "https://media.cnn.com/api/v1/images/stellar/prod/220216173054-amsterdam-travel-covid-19.jpg?c=3x4"
+  },
+  {
+    "id": 10,
+    "name": "Florence",
+    "photo": "https://tourismmedia.italia.it/is/image/mitur/20210401173629-firenze-toscana-gettyimages-1145040590-2?wid=1600&hei=900&fit=constrain,1&fmt=webp"
+  }
 ]

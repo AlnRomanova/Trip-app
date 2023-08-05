@@ -19,6 +19,11 @@ const FormAddTrip = ({ onCloseModal, setTrips }) => {
     return getFormattedDate(new Date());
   };
 
+  const getCityPhoto = (selectedCityName) => {
+    const selectedCity = cities.find((city) => city.name === selectedCityName);
+    return selectedCity ? selectedCity.photo : "";
+  };
+
   const [formData, setFormData] = useState({
     city: "",
     startDate: "",
@@ -30,7 +35,7 @@ const FormAddTrip = ({ onCloseModal, setTrips }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({ ...prevData, [name]: value }));
+    setFormData((prevData) => ({ ...prevData, [name]: value}));
   };
 
 
@@ -39,7 +44,7 @@ const FormAddTrip = ({ onCloseModal, setTrips }) => {
     if (formData.city) {
       setTrips((prevItems) => [
         ...prevItems,
-        { ...formData},
+        { ...formData, photo: getCityPhoto(formData.city) },
       ]);
       setFormData({ city: "", startDate: "", endDate: "" });
        onCloseModal()
@@ -68,12 +73,19 @@ const FormAddTrip = ({ onCloseModal, setTrips }) => {
           <option className={css.selectPlaceholder} value="" disabled hidden>
             Please select a city
           </option>
-          {cities.map(({ id, name }) => (
-            <option key={id} value={id}>
+          {cities.map(({ id, name}) => (
+            <option key={id} value={name}>
               {name}
             </option>
           ))}
         </select>
+        {formData.city && (
+          <img
+            className={css.selectedCityImg}
+            src={getCityPhoto(formData.city)}
+            alt={formData.city}
+          />
+        )}
         <label className={css.formLabel} htmlFor="startDate">
           Start date <span className={css.formFieldRequired}>*</span>
         </label>

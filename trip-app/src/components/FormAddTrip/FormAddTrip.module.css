@@ -78,4 +78,7 @@
   background: rgb(87, 87, 241);
 }
 
+.selectedCityImg {
+ display: none;
+}
 
