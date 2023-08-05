@@ -9,7 +9,7 @@ const FormSearch = () => {
   const [isHiden, setIsHiden] = useState(false);
   const [value, setValue] = useState("");
 
-  console.log(trips);
+
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
     setIsHiden(true);

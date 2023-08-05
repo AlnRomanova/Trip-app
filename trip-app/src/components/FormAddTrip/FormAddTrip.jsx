@@ -3,7 +3,7 @@ import { useState } from "react";
 import cities from "../../cities.json";
 import css from "../FormAddTrip/FormAddTrip.module.css";
 
-const FormAddTrip = () => {
+const FormAddTrip = ({ onCloseModal, setTrips }) => {
   const getFormattedDate = (date) => {
     const [year, month, day] = date.toISOString().split("T")[0].split("-");
     return `${year}-${month}-${day}`;
@@ -25,28 +25,33 @@ const FormAddTrip = () => {
     endDate: "",
   });
 
-  const [trips, setTrips] = useState([]);
-  console.log(trips);
+  console.log(formData)
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.city) {
-      const selectedCity = cities.find((city) => city.id === formData.city);
       setTrips((prevItems) => [
         ...prevItems,
-        { ...formData, name: selectedCity.name },
+        { ...formData},
       ]);
       setFormData({ city: "", startDate: "", endDate: "" });
+       onCloseModal()
+
     } else {
       alert("Please select a city before submitting the form.");
     }
   };
+
+
   return (
+    <>
     <div className={css.formWrapper}>
       <h3 className={css.formTitle}>Create trip</h3>
       <form className={css.form} onSubmit={handleSubmit}>
@@ -104,13 +109,14 @@ const FormAddTrip = () => {
           placeholder="Select date"
         />
         <div className={css.formButtonWrap}>
-          <button className={css.formCancelBtn}>Cancel</button>
+          <button className={css.formCancelBtn} onClick={onCloseModal}>Cancel</button>
           <button className={css.formSaveBtn} type="submit">
             Save
           </button>
         </div>
       </form>
     </div>
+     </>
   );
 };
 

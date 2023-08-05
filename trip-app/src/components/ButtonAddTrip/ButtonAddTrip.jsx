@@ -4,7 +4,7 @@ import css from "../ButtonAddTrip/ButtonAddTrip.module.css";
 import addTripIcon from "../../images/addTripIcon.svg";
 import ModalAddTrip from "../ModalAddTrip/ModalAddTrip";
 
-const ButtonAddTrip = () => {
+const ButtonAddTrip = ({setTrips}) => {
   const [isModalAddTransactionOpen, setIsModalAddTransactionOpen] =
     useState(false);
 
@@ -20,20 +20,20 @@ const ButtonAddTrip = () => {
     setIsModalAddTransactionOpen(true);
   };
 
-  const handleClickClose = () => {
+  const handleCloseModal = () => {
     setIsModalAddTransactionOpen(false);
   };
 
   const handleBackdrop = (e) => {
     if (e.target === e.currentTarget) {
-      handleClickClose();
+      handleCloseModal();
     }
   };
 
   useEffect(() => {
     const closeByEsc = (e) => {
       if (e.code === "Escape") {
-        handleClickClose();
+        handleCloseModal();
       }
     };
 
@@ -60,8 +60,9 @@ const ButtonAddTrip = () => {
       </div>
       {isModalAddTransactionOpen && (
         <ModalAddTrip
-          onClose={handleClickClose}
+          onCloseModal={handleCloseModal}
           onClickBackdrop={handleBackdrop}
+          setTrips={setTrips}
         />
       )}
     </>
