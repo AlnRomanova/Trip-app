@@ -31,3 +31,25 @@
   margin-top: 10px;
   font-size: 15px;
 }
+
+.sliderButtons {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.prevButton, .nextButton {
+  padding: 8px 16px;
+  margin: 0 8px;
+  background-color:  rgba(123, 175, 240, 0.5);
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.prevButton:disabled,
+.nextButton:disabled {
+  background-color: #eff2f6;
+  cursor: default;
+}
