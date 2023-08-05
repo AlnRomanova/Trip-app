@@ -1,0 +1,79 @@
+.formWrapper {
+  background-color: white;
+  padding: 15px;
+}
+
+.formTitle {
+  margin-bottom: 60px;
+}
+
+.form {
+  display: block;
+  width: 580px;
+  height: 420px;
+}
+
+.formLabel {
+  position: relative;
+  font-family: "Manrope";
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+  color: #000000;
+}
+
+.formFieldRequired {
+  color: red;
+}
+
+.formInput {
+  width: 95%;
+  height: 16px;
+  padding: 11px 14px;
+  margin: 8px 0px 21px 0px;
+  border: 1px solid rgb(236, 226, 226);
+}
+
+.formSelect {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0px 21px 0px;
+  font-size: 16px;
+  border: 1px solid rgb(236, 226, 226);
+  color: black;
+}
+
+.formInput::placeholder {
+  padding-left: 5px;
+  font-size: 17px;
+}
+
+.formButtonWrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 82px;
+  gap: 10px;
+}
+.formCancelBtn, .formSaveBtn {
+  display: block;
+  width: 100px;
+  padding: 8px;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  border: 1px solid rgb(236, 226, 226);
+}
+
+.formCancelBtn {
+  color: black;
+  background: white;
+}
+
+.formSaveBtn {
+  color: white;
+  background: rgb(87, 87, 241);
+}
