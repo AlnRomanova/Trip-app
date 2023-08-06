@@ -4,9 +4,17 @@ import { useDispatch } from 'react-redux';
 import { addTrip } from "../../redux/tripsOperation";
 import cities from "../../cities.json";
 import css from "../FormAddTrip/FormAddTrip.module.css";
+import { nanoid } from 'nanoid'
 
 
 const FormAddTrip = ({ onCloseModal }) => {
+  const [formData, setFormData] = useState({
+    id: nanoid(),
+    city: "",
+    startDate: "",
+    endDate: "",
+  });
+  
   const dispatch = useDispatch();
   
   const getFormattedDate = (date) => {
@@ -28,15 +36,6 @@ const FormAddTrip = ({ onCloseModal }) => {
     const selectedCity = cities.find((city) => city.name === selectedCityName);
     return selectedCity ? selectedCity.photo : "";
   };
-
-  const [formData, setFormData] = useState({
-    city: "",
-    startDate: "",
-    endDate: "",
-  });
-
-
-  console.log(formData)
 
 
   const handleChange = (e) => {

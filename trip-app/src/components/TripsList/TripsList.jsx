@@ -2,13 +2,31 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
+import { selectAllTrips, selectError, selectFilteredTrips, selectStatus } from "../../redux/tripsSelector";
+
+
 
 const TripsList = () => {
-  const trips = useSelector((state) => state.trips.trips);
+  const [currentPosition, setCurrentPosition] = useState(0);
+
+  const trips = useSelector(selectAllTrips);
+  const filteredTrips = useSelector(selectFilteredTrips);
+  const status = useSelector(selectStatus);
+  const error = useSelector(selectError);
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
+
+  if (status === 'failed') {
+    return <div>Error: {error}</div>;
+  }
+
+  const displayedTrips = filteredTrips.length > 0 ? filteredTrips : trips;
+
 
   const ITEMS_PER_PAGE = 3; 
 
-  const [currentPosition, setCurrentPosition] = useState(0);
 
   const handleNext = () => {
     setCurrentPosition((prevPosition) => prevPosition + 1);
@@ -18,7 +36,7 @@ const TripsList = () => {
     setCurrentPosition((prevPosition) => prevPosition - 1);
   };
 
-  const paginatedTrips = trips.slice(
+  const paginatedTrips = displayedTrips.slice(
     currentPosition * ITEMS_PER_PAGE,
     currentPosition * ITEMS_PER_PAGE + ITEMS_PER_PAGE
   );
@@ -27,8 +45,8 @@ const TripsList = () => {
   return (
     <>
       <ul className={css.tripList}>
-        {paginatedTrips.map(({ city, startDate, endDate, photo }) => (
-          <li className={css.tripItem} key={city}>
+        {paginatedTrips.map(({ id, city, startDate, endDate, photo }) => (
+          <li className={css.tripItem} key={id}>
             <img className={css.tripDestinationImg} src={photo} alt="city" />
             <div className={css.tripInfo}>
               <p className={css.tripDestination}>{city}</p>

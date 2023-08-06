@@ -1,37 +1,31 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 import css from "../../components/FormSearch/FormSearch.module.css";
 import iconSearch from "../../images/searchIcon.svg";
 import iconClose from "../../images/x-circle.svg";
+import { searchTrips } from "../../redux/tripsOperation";
+
 
 const FormSearch = () => {
   const [isHiden, setIsHiden] = useState(false);
-  const [value, setValue] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
+  console.log(searchQuery)
+
+  const dispatch = useDispatch();
 
   const handleSearchSubmit = async (e) => {
     e.preventDefault();
-    setIsHiden(true);
-    const searchQuery = e.currentTarget.elements.search.value.trim();
-    if (searchQuery === "") {
-      // setTrips(null);
-      return;
-    }
-
-    // try {
-    //   const renderSearchedQuery = await fetchSearchNews(search);
-    //   setTrips(renderSearchedQuery);
-    // } catch (error) {
-    // }
+    dispatch(searchTrips(searchQuery));
   };
 
-  const handleClick = (e) => {
-    setValue(e.currentTarget.value);
+  const handleChange = (e) => {
+    setSearchQuery(e.currentTarget.value);
   };
 
   const handleCloseBtn = () => {
-    setValue("");
-    // setTrips(null);
+    setSearchQuery("");
     setIsHiden(false);
   };
 
@@ -43,12 +37,12 @@ const FormSearch = () => {
           type="text"
           name="search"
           id="search"
-          value={value}
+          value={searchQuery}
           placeholder="Search your trip"
-          onChange={handleClick}
+          onChange={handleChange}
         />
         {!isHiden ? (
-          <button className={css.searchButton} disabled={!value}>
+          <button className={css.searchButton} disabled={!searchQuery}>
             <img className={css.icon} src={iconSearch} alt="" />
           </button>
         ) : (
