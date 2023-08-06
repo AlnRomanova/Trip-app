@@ -11,11 +11,14 @@ const TripsList = () => {
   const filteredTrips = useSelector(selectFilteredTrips);
 
   console.log(trips);
+
   useEffect(() => {
     setCurrentPosition(0);
-  }, [trips, filteredTrips]);
+  }, [trips, filteredTrips?.length]);
+  
 
-  const displayedTrips = filteredTrips?.length > 0 ? filteredTrips : trips;
+  const displayedTrips = filteredTrips?.length > 0 ? [...filteredTrips] : [...trips];
+  displayedTrips.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
   const ITEMS_PER_PAGE = 3;
 
