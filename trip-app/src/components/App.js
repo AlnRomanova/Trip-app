@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import FormSearch from "./FormSearch/FormSearch";
 import TripsList from "./TripsList/TripsList";
 import WeekList from "./WeekList/WeekList";
 import Sidebar from "./Sidebar/Sidebar";
 import { ToastContainer } from "react-toastify";
 import { searchTrips } from "../redux/tripsOperation";
+import SearchInput from "./SearchInput/SearchInput";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="container">
       <h1>Weather Forecast</h1>
-      <FormSearch />
+      <SearchInput/>
       <TripsList />
       <WeekList />
       <Sidebar />
