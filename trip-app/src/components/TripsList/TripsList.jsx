@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
 import { selectFilteredTrips, sortTripsByStartDate} from "../../redux/trips/tripsSelector";
+import { fetchForecast } from "../../redux/forecast/forecastOperation";
 
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
+  const [selectedTrip, setSelectedTrip] = useState(null);
+  const dispatch = useDispatch();
+  console.log(selectedTrip)
 
   const trips = useSelector(sortTripsByStartDate);
   const filteredTrips = useSelector(selectFilteredTrips);
+  
 
   useEffect(() => {
     setCurrentPosition(0);
@@ -32,11 +37,18 @@ const TripsList = () => {
     currentPosition * ITEMS_PER_PAGE + ITEMS_PER_PAGE
   );
 
+
+  const handleTripItemClick = (city) => {
+    console.log(city)
+    setSelectedTrip(city); 
+    dispatch(fetchForecast(city)); 
+  };
+
   return (
     <>
       <ul className={css.tripList}>
         {paginatedTrips.map(({ id, city, startDate, endDate, photo }) => (
-          <li className={css.tripItem} key={id}>
+          <li className={css.tripItem} key={id} onClick={() => handleTripItemClick(city)}>
             <img className={css.tripDestinationImg} src={photo} alt="city" />
             <div className={css.tripInfo}>
               <p className={css.tripDestination}>{city}</p>

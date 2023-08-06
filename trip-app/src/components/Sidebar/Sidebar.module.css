@@ -18,10 +18,12 @@
 
 
 .sidebarContainer {
+  position: relative;
   margin-top: 250px;
   color: white;
   text-align: center;
 }
+
 
 
 .sidebarTitle, .sidebarDegrees {
@@ -70,4 +72,9 @@ font-size: 60px;
   padding-top: 15px;
   font-size: 15px;
   text-transform: uppercase;
+}
+
+.forecastIcon {
+  width: 100px;
+  
 }
