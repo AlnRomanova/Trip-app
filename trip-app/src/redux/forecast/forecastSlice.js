@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchForecast } from "./forecastOperation";
+import { fetchForecast, fetchForecastDuringWeeks } from "./forecastOperation";
 
 const initialState = {
   data: {},
@@ -21,6 +21,17 @@ const forecastSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(fetchForecast.rejected, (state, action) => {
+        state.status = "failed";
+        state.error = action.error.message;
+      })
+      .addCase(fetchForecastDuringWeeks.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchForecastDuringWeeks.fulfilled, (state, action) => {
+        state.status = "succeeded";
+        state.data = action.payload;
+      })
+      .addCase(fetchForecastDuringWeeks.rejected, (state, action) => {
         state.status = "failed";
         state.error = action.error.message;
       });

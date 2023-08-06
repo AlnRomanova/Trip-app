@@ -9,6 +9,19 @@ export const fetchForecast = createAsyncThunk(
   async (city, thunkAPI) => {
     try {
       const response = await axios.get(`${city}/today?unitGroup=metric&include=days&key=${YOUR_API_KEY}&contentType=json`);
+      return response.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const fetchForecastDuringWeeks = createAsyncThunk(
+  'forecast/fetchForecastDuringWeeks',
+  async ({city, startDate, endDate}, thunkAPI) => {
+    try {
+      const response = await axios.get(`${city}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${YOUR_API_KEY}&contentType=json`);
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -16,6 +29,8 @@ export const fetchForecast = createAsyncThunk(
     }
   }
 );
+
+
 
 
 

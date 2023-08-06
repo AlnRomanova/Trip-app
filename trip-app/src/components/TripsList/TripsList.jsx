@@ -1,19 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import WeekList from '../WeekList/WeekList';
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
 import { selectFilteredTrips, sortTripsByStartDate} from "../../redux/trips/tripsSelector";
-import { fetchForecast } from "../../redux/forecast/forecastOperation";
+import {  fetchForecast } from "../../redux/forecast/forecastOperation";
+import { format, parse } from "date-fns"; 
 
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [selectedTrip, setSelectedTrip] = useState(null);
+  const [selectedStartDate, setSelectedStartDate] = useState(null); 
+  const [selectedEndDate, setSelectedEndDate] = useState(null); 
   const dispatch = useDispatch();
   console.log(selectedTrip)
+  console.log("selectedStartDate:", selectedStartDate);
+  console.log("selectedEndDate:", selectedEndDate);
 
   const trips = useSelector(sortTripsByStartDate);
   const filteredTrips = useSelector(selectFilteredTrips);
-  
+
 
   useEffect(() => {
     setCurrentPosition(0);
@@ -37,18 +43,33 @@ const TripsList = () => {
     currentPosition * ITEMS_PER_PAGE + ITEMS_PER_PAGE
   );
 
-
-  const handleTripItemClick = (city) => {
-    console.log(city)
-    setSelectedTrip(city); 
-    dispatch(fetchForecast(city)); 
+  const convertToDatetime = (date) => {
+    return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-MM-dd");
   };
+
+  console.log(convertToDatetime("15.08.2023"))
+
+  const handleTripItemClick = (city, startDate, endDate) => {
+    if (!startDate || !endDate) {
+      console.log("Invalid startDate or endDate:", startDate, endDate);
+      return;
+    }
+    console.log(city);
+    setSelectedTrip(city);
+    setSelectedStartDate(startDate);
+    setSelectedEndDate(endDate);
+    dispatch(fetchForecast(city, convertToDatetime(startDate), convertToDatetime(endDate)));
+
+    console.log(convertToDatetime(startDate))
+    console.log(convertToDatetime(endDate))
+  };
+ 
 
   return (
     <>
       <ul className={css.tripList}>
         {paginatedTrips.map(({ id, city, startDate, endDate, photo }) => (
-          <li className={css.tripItem} key={id} onClick={() => handleTripItemClick(city)}>
+          <li className={`${css.tripItem} ${selectedTrip === city ? css.selected : ""}`} key={id} onClick={() => handleTripItemClick(city, startDate, endDate)}>
             <img className={css.tripDestinationImg} src={photo} alt="city" />
             <div className={css.tripInfo}>
               <p className={css.tripDestination}>{city}</p>
@@ -76,6 +97,9 @@ const TripsList = () => {
           Next
         </button>
       </div>
+      {selectedTrip && (
+  <WeekList startDate={selectedStartDate} endDate={selectedEndDate} />
+)}
     </>
   );
 };

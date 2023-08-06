@@ -9,9 +9,7 @@ import { fetchForecast } from "../../redux/forecast/forecastOperation";
 const Sidebar = () => {
   const dispatch = useDispatch();
   const forecastData = useSelector((state) => state.forecast.data);
-  console.log(forecastData)
 
-  
   const weatherIcons = {
     "clear-day": "https://cdn-icons-png.flaticon.com/512/7865/7865939.png", 
      "rain": "https://icon-library.com/images/rain-icon-png/rain-icon-png-2.jpg",
@@ -30,7 +28,7 @@ const Sidebar = () => {
       <div className={css.sidebarContainer}>
         <h2 className={css.sidebarTitle}>Sunday</h2>
        <ul>
-        {forecastData.days?.map(({ icon, temp}) => (
+        {forecastData.days?.map(({ icon, temp, datetime}) => (
             <li className={css.sidebarWrap} key={icon}  >
         <img  src={weatherIcons[icon]} alt="" className={css.forecastIcon} />
         <p className={css.sidebarDegrees}>{temp}</p>

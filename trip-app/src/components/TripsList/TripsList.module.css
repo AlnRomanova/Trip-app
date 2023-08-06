@@ -53,3 +53,9 @@
   background-color: #eff2f6;
   cursor: default;
 }
+
+
+.selected {
+  background-color: #f0f0f0;
+  border: 2px solid #333;
+}
