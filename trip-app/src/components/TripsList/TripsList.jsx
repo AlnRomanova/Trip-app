@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
-import { selectAllTrips, selectFilteredTrips } from "../../redux/tripsSelector";
+import { selectFilteredTrips, sortTripsByStartDate } from "../../redux/tripsSelector";
 
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
 
-  const trips = useSelector(selectAllTrips);
+  const trips = useSelector(sortTripsByStartDate);
   const filteredTrips = useSelector(selectFilteredTrips);
+  console.log(filteredTrips)
+  
 
   console.log(trips);
 
@@ -18,7 +20,6 @@ const TripsList = () => {
   
 
   const displayedTrips = filteredTrips?.length > 0 ? [...filteredTrips] : [...trips];
-  displayedTrips.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
 
   const ITEMS_PER_PAGE = 3;
 

@@ -17,6 +17,6 @@ export const searchTrips = createAsyncThunk(
     if (filteredTrips.length === 0) {
       return rejectWithValue('No trips found for the given search query.');
     }
-    return filteredTrips;
+    return filteredTrips.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
   }
 );
