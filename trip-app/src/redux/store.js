@@ -6,8 +6,8 @@ import { persistStore, persistReducer, FLUSH,
   PURGE,
   REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-
-import { tripsReducer } from './tripsSlices'; 
+import { tripsReducer } from './trips/tripsSlice'; 
+import { forecastReducer } from './forecast/forecastSlice';
 
 const persistConfig = {
   key: 'root', 
@@ -20,6 +20,7 @@ const persistedReducer = persistReducer(persistConfig, tripsReducer);
 const store = configureStore({
   reducer: {
     trips: persistedReducer,
+    forecast: forecastReducer
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

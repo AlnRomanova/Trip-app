@@ -4,7 +4,7 @@ import TripsList from "./TripsList/TripsList";
 import WeekList from "./WeekList/WeekList";
 import Sidebar from "./Sidebar/Sidebar";
 import { ToastContainer } from "react-toastify";
-import { searchTrips } from "../redux/tripsOperation";
+import { searchTrips } from "../redux/trips/tripsOperation";
 import SearchInput from "./SearchInput/SearchInput";
 
 function App() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { addTrip } from "../../redux/tripsOperation";
+import { addTrip } from "../../redux/trips/tripsOperation";
 import cities from "../../cities.json";
 import css from "../FormAddTrip/FormAddTrip.module.css";
 import { nanoid } from 'nanoid';

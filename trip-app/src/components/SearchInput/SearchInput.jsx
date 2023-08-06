@@ -2,8 +2,8 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import css from "../SearchInput/SearchInput.module.css";
 import iconSearch from "../../images/searchIcon.svg";
-import { searchTrips } from "../../redux/tripsOperation";
-import { selectStatus, selectError, selectFilteredTrips } from "../../redux/tripsSelector";
+import { searchTrips } from "../../redux/trips/tripsOperation";
+import { selectStatus, selectError, selectFilteredTrips } from "../../redux/trips/tripsSelector";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import debounce from "lodash.debounce";
@@ -11,8 +11,6 @@ import debounce from "lodash.debounce";
 const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
-
-  console.log(searchQuery)
   const status = useSelector(selectStatus);
   const error = useSelector(selectError);
   const filteredTrips = useSelector(selectFilteredTrips);
