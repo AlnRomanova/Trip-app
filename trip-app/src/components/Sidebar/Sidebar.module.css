@@ -7,74 +7,83 @@
   padding: 20px;
   box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
   background-color: rgb(15, 15, 57);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
 }
 
 .sidebarImg {
-  float: right;
-  padding: 20px;
-  width: 100px;
-  height: 100px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
 }
 
-
 .sidebarContainer {
-  position: relative;
-  margin-top: 250px;
+  margin-top: 350px;
   color: white;
   text-align: center;
 }
 
-
-
-.sidebarTitle, .sidebarDegrees {
-  font-size: 50px;
-  font-weight: 700;
+.sidebarDayOfWeek,
+.sidebarDegrees {
+  font-size: 45px;
+  font-weight: 500;
   padding-bottom: 25px;
-
 }
 
-.sidebarWrap{
+.sidebarList {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  gap: 10px;
-
+  list-style: none; 
+  padding: 0;
 }
 
-.sidebarDegrees{
-font-size: 60px;
+.sidebarItem {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
+.sidebarDegreesWrap {
+  display: flex;
+}
+
+.sidebarDegrees {
+  font-size: 60px;
+  margin-left: 20px; 
+ 
+}
+
+
+.sidebarTemp {
+  display: flex;
+  font-size: 20px;
+}
+
+.sidebarTempValue {
+  font-size: 60px;
+  margin-left: 20px; 
+  margin-right: 5px;
+}
+
+.sidebarTempUnit {
+  font-size: 25px;
+}
+
 .sidebarCity {
   font-size: 30px;
 }
 
-.sidebarList {
-  margin-top: 130px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-
-}
-
-.sidebarItem {
-  width: 100px;
-  height: 100px;
-  margin-right: 45px;
-  color: white;
- 
-}
-
-.sidebarDate{
-  font-size: 30px;
-  font-weight: 700;
-}
-
-.sidebarDateText{
-  padding-top: 15px;
-  font-size: 15px;
-  text-transform: uppercase;
-}
-
 .forecastIcon {
   width: 100px;
-  
 }

@@ -8,15 +8,10 @@ const WeekList = ({startDate, endDate, city}) => {
 
   const dispatch = useDispatch();
   const forecastWeekData = useSelector(selectWeeklyForecastData);
-  console.log("forecastWeekData:", forecastWeekData);
-  
   
   useEffect(() => {
     dispatch(fetchForecastDuringWeeks({ city, startDate, endDate }));
   }, [dispatch, startDate, endDate, city]);
-
-  console.log(startDate)
-  console.log(endDate)
 
   const weatherIcons = {
     "clear-day": "https://static.vecteezy.com/system/resources/previews/009/344/657/original/sun-transparent-background-free-png.png", 

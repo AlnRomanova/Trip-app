@@ -26,7 +26,6 @@ export const fetchForecastDuringWeeks = createAsyncThunk(
       const response = await axios.get(
         `${city}/${startDate}/${endDate}?unitGroup=metric&include=days&key=${YOUR_API_KEY}&contentType=json`
       );
-      console.log(response.data);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
