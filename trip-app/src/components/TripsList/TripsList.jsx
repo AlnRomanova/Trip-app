@@ -4,7 +4,7 @@ import WeekList from '../WeekList/WeekList';
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
 import { selectFilteredTrips, sortTripsByStartDate} from "../../redux/trips/tripsSelector";
-import {  fetchForecast } from "../../redux/forecast/forecastOperation";
+import {  fetchForecast, fetchForecastDuringWeeks} from "../../redux/forecast/forecastOperation";
 import { format, parse } from "date-fns"; 
 
 const TripsList = () => {
@@ -13,9 +13,7 @@ const TripsList = () => {
   const [selectedStartDate, setSelectedStartDate] = useState(null); 
   const [selectedEndDate, setSelectedEndDate] = useState(null); 
   const dispatch = useDispatch();
-  console.log(selectedTrip)
-  console.log("selectedStartDate:", selectedStartDate);
-  console.log("selectedEndDate:", selectedEndDate);
+
 
   const trips = useSelector(sortTripsByStartDate);
   const filteredTrips = useSelector(selectFilteredTrips);
@@ -47,23 +45,26 @@ const TripsList = () => {
     return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-MM-dd");
   };
 
-  console.log(convertToDatetime("15.08.2023"))
+  const handleWeekForecastSelection = (city, startDate, endDate) => {
+    dispatch(fetchForecastDuringWeeks({ city, startDate, endDate }));
+  };
+
+  
+  const handleTripSelection = (selectedCity) => {
+    dispatch(fetchForecast(selectedCity));
+  };
 
   const handleTripItemClick = (city, startDate, endDate) => {
     if (!startDate || !endDate) {
       console.log("Invalid startDate or endDate:", startDate, endDate);
       return;
     }
-    console.log(city);
     setSelectedTrip(city);
-    setSelectedStartDate(startDate);
-    setSelectedEndDate(endDate);
-    dispatch(fetchForecast(city, convertToDatetime(startDate), convertToDatetime(endDate)));
-
-    console.log(convertToDatetime(startDate))
-    console.log(convertToDatetime(endDate))
+    setSelectedStartDate(convertToDatetime(startDate));
+    setSelectedEndDate(convertToDatetime(endDate));
+   handleTripSelection(city);
+    handleWeekForecastSelection(city, convertToDatetime(startDate), convertToDatetime(endDate));
   };
- 
 
   return (
     <>
@@ -98,7 +99,7 @@ const TripsList = () => {
         </button>
       </div>
       {selectedTrip && (
-  <WeekList startDate={selectedStartDate} endDate={selectedEndDate} />
+  <WeekList startDate={selectedStartDate} endDate={selectedEndDate} city={selectedTrip} />
 )}
     </>
   );
