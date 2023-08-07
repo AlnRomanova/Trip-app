@@ -5,6 +5,7 @@ import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
 import {
   selectFilteredTrips,
+  selectSelectedTrip,
   sortTripsByStartDate,
 } from "../../redux/trips/tripsSelector";
 import {
@@ -13,13 +14,16 @@ import {
 } from "../../redux/forecast/forecastOperation";
 import { format, parse } from "date-fns";
 import { toast } from "react-toastify";
+import { setSelectedTrip } from "../../redux/trips/tripsSlice";
 
 
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
-
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
+
+  const selectedTrip = useSelector(selectSelectedTrip);
+
   const dispatch = useDispatch();
 
   const trips = useSelector(sortTripsByStartDate);
@@ -46,11 +50,6 @@ const TripsList = () => {
     currentPosition * ITEMS_PER_PAGE,
     currentPosition * ITEMS_PER_PAGE + ITEMS_PER_PAGE
   );
-
-
-  const [selectedTrip, setSelectedTrip] = useState(
-    paginatedTrips.length > 0 ? paginatedTrips[0].city : null
-  );
   
   const convertToDatetime = (date) => {
     return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-MM-dd");
@@ -69,7 +68,7 @@ const TripsList = () => {
       toast.error("Invalid startDate or endDate:", startDate, endDate);
       return;
     }
-    setSelectedTrip(city);
+    dispatch(setSelectedTrip(city));
     setSelectedStartDate(convertToDatetime(startDate));
     setSelectedEndDate(convertToDatetime(endDate));
     handleTripSelection(city);

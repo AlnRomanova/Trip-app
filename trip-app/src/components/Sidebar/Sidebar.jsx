@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import css from "./Sidebar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import sidebarImage from "../../images/icons8-penguin-64.png";
 import { fetchForecast } from "../../redux/forecast/forecastOperation";
 import { selectCurrentForecastData } from "../../redux/forecast/forecastSelector";
 import { format, parse } from "date-fns";
+import { selectSelectedTrip } from "../../redux/trips/tripsSelector";
 
 const Sidebar = () => {
+  
+  const [countdown, setCountdown] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+console.log(countdown)
+
+const selectedTrip = useSelector(selectSelectedTrip);
+console.log(selectedTrip)
+
   const dispatch = useDispatch();
   const forecastData = useSelector(selectCurrentForecastData);
 
@@ -27,6 +40,37 @@ const Sidebar = () => {
     const date = parse(dateString, "yyyy-MM-dd", new Date());
     return format(date, "EEEE");
   };
+
+
+  useEffect(() => {
+    if (selectedTrip && forecastData.days) {
+    
+      const selectedTripData = forecastData.days.find(
+        (day) => day.address === selectedTrip
+      );
+  
+      if (selectedTripData) {
+        const startDate = parse(selectedTripData.datetime, "yyyy-MM-dd", new Date());
+        const currentDate = new Date();
+        const timeDifference = startDate - currentDate;
+  
+        console.log(timeDifference);
+  
+        if (timeDifference > 0) {
+          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+          const hours = Math.floor(
+            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+          );
+          const minutes = Math.floor(
+            (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+  
+          setCountdown({ days, hours, minutes, seconds });
+        }
+      }
+    }
+  }, [selectedTrip, forecastData.days]);
 
   return (
     <section className={css.sidebar}>
@@ -51,6 +95,17 @@ const Sidebar = () => {
             </li>
           ))}
         </ul>
+        {countdown.days > 0 && (
+            <div className={css.countdownContainer}>
+              <p>Countdown to Trip: </p>
+              <div className={css.countdownTimer}>
+                <span>{countdown.days}d </span>
+                <span>{countdown.hours}h </span>
+                <span>{countdown.minutes}m </span>
+                <span>{countdown.seconds}s </span>
+              </div>
+            </div>
+          )}
       </div>
     </section>
   );

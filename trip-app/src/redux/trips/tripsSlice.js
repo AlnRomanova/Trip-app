@@ -7,12 +7,17 @@ const initialState = {
   filteredTrips: [],
   status: "idle",
   error: null,
+  selectedTrip: null,
 };
 
 const tripSlice = createSlice({
   name: "trips",
   initialState,
-  reducers: {},
+  reducers: {
+    setSelectedTrip: (state, action) => {
+      state.selectedTrip = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(addTrip.pending, (state) => {})
@@ -36,4 +41,5 @@ const tripSlice = createSlice({
   },
 });
 
+export const { setSelectedTrip } = tripSlice.actions; 
 export const tripsReducer = tripSlice.reducer;

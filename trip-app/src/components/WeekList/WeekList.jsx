@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "../WeekList/WeekList.module.css";
 import { fetchForecastDuringWeeks } from "../../redux/forecast/forecastOperation";
 import { selectWeeklyForecastData } from "../../redux/forecast/forecastSelector";
+import { format, parse } from "date-fns";
 
 const WeekList = ({startDate, endDate, city}) => {
 
@@ -21,14 +22,19 @@ const WeekList = ({startDate, endDate, city}) => {
      "partly-cloudy-day": "https://icon-library.com/images/partly-cloudy-icon/partly-cloudy-icon-0.jpg"
   };
  
+  const getDayOfWeek = (dateString) => {
+    const date = parse(dateString, "yyyy-MM-dd", new Date());
+    return format(date, "EEEE");
+  };
+
 
   return (
     <div>
       <h3 className={css.weekTitle}>Week</h3>
       <ul className={css.weekList}>
-      {forecastWeekData.days?.map(({ icon, tempmax, tempmin }, index) => (
+      {forecastWeekData.days?.map(({ icon, datetime, tempmax, tempmin }, index) => (
           <li className={css.weekItem} key={index}>
-            <p>Sunday</p>
+          <p className={css.sidebarDayOfWeek}>{getDayOfWeek(datetime)}</p>
             <img className={css.weatherImg} src={weatherIcons[icon]} alt="weather" />
             <p className={css.degrees}>{tempmax}/{tempmin}</p>
           </li>
