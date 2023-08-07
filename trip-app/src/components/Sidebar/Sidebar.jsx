@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect} from "react";
 import css from "./Sidebar.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import sidebarImage from "../../images/icons8-penguin-64.png";
@@ -8,6 +8,7 @@ import { selectCurrentForecastData } from "../../redux/forecast/forecastSelector
 const Sidebar = () => {
   const dispatch = useDispatch();
   const forecastData = useSelector(selectCurrentForecastData);
+
 
   console.log(forecastData);
   const weatherIcons = {

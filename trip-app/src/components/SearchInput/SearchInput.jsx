@@ -5,7 +5,6 @@ import iconSearch from "../../images/searchIcon.svg";
 import { searchTrips } from "../../redux/trips/tripsOperation";
 import { selectStatus, selectError, selectFilteredTrips } from "../../redux/trips/tripsSelector";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import debounce from "lodash.debounce";
 
 const SearchInput = () => {

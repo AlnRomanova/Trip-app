@@ -8,6 +8,7 @@ import { nanoid } from 'nanoid';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
+import { toast } from "react-toastify";
 
 
 const FormAddTrip = ({ onCloseModal }) => {
@@ -67,7 +68,7 @@ const FormAddTrip = ({ onCloseModal }) => {
       setFormData({ city: "", startDate: "", endDate: "" });
       onCloseModal();
     } else {
-      alert("Please select a city before submitting the form.");
+      toast.error("Please select a city before submitting the form.");
     }
   };
 

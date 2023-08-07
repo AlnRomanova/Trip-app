@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import TripsList from "./TripsList/TripsList";
 import Sidebar from "./Sidebar/Sidebar";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { searchTrips } from "../redux/trips/tripsOperation";
 import SearchInput from "./SearchInput/SearchInput";
 

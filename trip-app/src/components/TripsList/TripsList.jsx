@@ -1,30 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import WeekList from '../WeekList/WeekList';
+import WeekList from "../WeekList/WeekList";
 import css from "../../components/TripsList/TripsList.module.css";
 import ButtonAddTrip from "../ButtonAddTrip/ButtonAddTrip";
-import { selectFilteredTrips, sortTripsByStartDate} from "../../redux/trips/tripsSelector";
-import {  fetchForecast, fetchForecastDuringWeeks} from "../../redux/forecast/forecastOperation";
-import { format, parse } from "date-fns"; 
+import {
+  selectFilteredTrips,
+  sortTripsByStartDate,
+} from "../../redux/trips/tripsSelector";
+import {
+  fetchForecast,
+  fetchForecastDuringWeeks,
+} from "../../redux/forecast/forecastOperation";
+import { format, parse } from "date-fns";
+import { toast } from "react-toastify";
+
 
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
-  const [selectedTrip, setSelectedTrip] = useState(null);
-  const [selectedStartDate, setSelectedStartDate] = useState(null); 
-  const [selectedEndDate, setSelectedEndDate] = useState(null); 
-  const dispatch = useDispatch();
 
+  const [selectedStartDate, setSelectedStartDate] = useState(null);
+  const [selectedEndDate, setSelectedEndDate] = useState(null);
+  const dispatch = useDispatch();
 
   const trips = useSelector(sortTripsByStartDate);
   const filteredTrips = useSelector(selectFilteredTrips);
 
-
   useEffect(() => {
     setCurrentPosition(0);
   }, [trips, filteredTrips?.length]);
-  
 
-  const displayedTrips = filteredTrips?.length > 0 ? [...filteredTrips] : [...trips];
+  const displayedTrips =
+    filteredTrips?.length > 0 ? [...filteredTrips] : [...trips];
 
   const ITEMS_PER_PAGE = 3;
 
@@ -41,6 +47,11 @@ const TripsList = () => {
     currentPosition * ITEMS_PER_PAGE + ITEMS_PER_PAGE
   );
 
+
+  const [selectedTrip, setSelectedTrip] = useState(
+    paginatedTrips.length > 0 ? paginatedTrips[0].city : null
+  );
+  
   const convertToDatetime = (date) => {
     return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-MM-dd");
   };
@@ -49,28 +60,37 @@ const TripsList = () => {
     dispatch(fetchForecastDuringWeeks({ city, startDate, endDate }));
   };
 
-  
   const handleTripSelection = (selectedCity) => {
     dispatch(fetchForecast(selectedCity));
   };
 
   const handleTripItemClick = (city, startDate, endDate) => {
     if (!startDate || !endDate) {
-      console.log("Invalid startDate or endDate:", startDate, endDate);
+      toast.error("Invalid startDate or endDate:", startDate, endDate);
       return;
     }
     setSelectedTrip(city);
     setSelectedStartDate(convertToDatetime(startDate));
     setSelectedEndDate(convertToDatetime(endDate));
-   handleTripSelection(city);
-    handleWeekForecastSelection(city, convertToDatetime(startDate), convertToDatetime(endDate));
+    handleTripSelection(city);
+    handleWeekForecastSelection(
+      city,
+      convertToDatetime(startDate),
+      convertToDatetime(endDate)
+    );
   };
 
   return (
     <>
       <ul className={css.tripList}>
         {paginatedTrips.map(({ id, city, startDate, endDate, photo }) => (
-          <li className={`${css.tripItem} ${selectedTrip === city ? css.selected : ""}`} key={id} onClick={() => handleTripItemClick(city, startDate, endDate)}>
+          <li
+            className={`${css.tripItem} ${
+              selectedTrip === city ? css.selected : ""
+            }`}
+            key={id}
+            onClick={() => handleTripItemClick(city, startDate, endDate)}
+          >
             <img className={css.tripDestinationImg} src={photo} alt="city" />
             <div className={css.tripInfo}>
               <p className={css.tripDestination}>{city}</p>
@@ -99,8 +119,12 @@ const TripsList = () => {
         </button>
       </div>
       {selectedTrip && (
-  <WeekList startDate={selectedStartDate} endDate={selectedEndDate} city={selectedTrip} />
-)}
+        <WeekList
+          startDate={selectedStartDate}
+          endDate={selectedEndDate}
+          city={selectedTrip}
+        />
+      )}
     </>
   );
 };
