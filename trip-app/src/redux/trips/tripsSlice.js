@@ -3,11 +3,19 @@ import { addTrip } from "./tripsOperation";
 import { searchTrips } from "./tripsOperation";
 
 const initialState = {
-  trips: [],
+  trips: [
+    {
+      id: "25",
+      startDate: "20.08.2023",
+      endDate: "30.08.2023",
+      city: "Kyiv",
+      photo: "https://lp-cms-production.imgix.net/2019-06/a6469f3993128cbcdde6e2b0a90aa1d3-kyiv.jpg",
+    },
+  ],
   filteredTrips: [],
   status: "idle",
   error: null,
-  selectedTrip: null,
+  selectedTrip: "Kyiv",
 };
 
 const tripSlice = createSlice({

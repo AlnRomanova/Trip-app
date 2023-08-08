@@ -1,4 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { parse } from 'date-fns'; 
 
 export const addTrip = createAsyncThunk('trips/addTrip', async (formData) => {
     return formData;  
@@ -17,6 +18,8 @@ export const searchTrips = createAsyncThunk(
     if (filteredTrips.length === 0) {
       return rejectWithValue('No trips found for the given search query.');
     }
-    return filteredTrips.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+    return filteredTrips.sort((a, b) =>
+    parse(a.startDate, 'dd.MM.yyyy', new Date()) - parse(b.startDate, 'dd.MM.yyyy', new Date())
+  );;
   }
 );

@@ -27,6 +27,7 @@ const TripsList = () => {
   const dispatch = useDispatch();
 
   const trips = useSelector(sortTripsByStartDate);
+  console.log(trips)
   const filteredTrips = useSelector(selectFilteredTrips);
 
   useEffect(() => {
