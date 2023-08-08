@@ -5,20 +5,16 @@ import sidebarImage from "../../images/icons8-penguin-64.png";
 import { fetchForecast } from "../../redux/forecast/forecastOperation";
 import { selectCurrentForecastData } from "../../redux/forecast/forecastSelector";
 import { format, parse } from "date-fns";
-import { selectSelectedTrip } from "../../redux/trips/tripsSelector";
+import { selectAllTrips, selectSelectedTrip, selectTrips } from "../../redux/trips/tripsSelector";
 
 const Sidebar = () => {
-  
-  const [countdown, setCountdown] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-console.log(countdown)
 
 const selectedTrip = useSelector(selectSelectedTrip);
 console.log(selectedTrip)
+
+ const trips = useSelector(selectAllTrips)
+ console.log(trips)
+
 
   const dispatch = useDispatch();
   const forecastData = useSelector(selectCurrentForecastData);
@@ -31,10 +27,27 @@ console.log(selectedTrip)
     "partly-cloudy-day":
       "https://icon-library.com/images/partly-cloudy-icon/partly-cloudy-icon-0.jpg",
   };
+  const [countdownTime, setCountdownTime] = useState(null);
 
+
+  
   useEffect(() => {
     dispatch(fetchForecast(selectedTrip));
-  }, [dispatch, selectedTrip]);
+    const selectedTripObj = trips.find(trip => trip.city === selectedTrip);
+    if (selectedTripObj && selectedTripObj.startDate) {
+      const tripStartDateParts = selectedTripObj.startDate.split(".");
+      const tripStartDate = new Date(
+        tripStartDateParts[2], 
+        tripStartDateParts[1] - 1,
+        tripStartDateParts[0] 
+      );
+      
+      const currentTime = new Date();
+      const timeDifference = tripStartDate - currentTime;
+      setCountdownTime(timeDifference);
+    }
+  }, [dispatch, selectedTrip, trips]);
+
 
   const getDayOfWeek = (dateString) => {
     const date = parse(dateString, "yyyy-MM-dd", new Date());
@@ -42,35 +55,6 @@ console.log(selectedTrip)
   };
 
 
-  useEffect(() => {
-    if (selectedTrip && forecastData.days) {
-    
-      const selectedTripData = forecastData.days.find(
-        (day) => day.address === selectedTrip
-      );
-  
-      if (selectedTripData) {
-        const startDate = parse(selectedTripData.datetime, "yyyy-MM-dd", new Date());
-        const currentDate = new Date();
-        const timeDifference = startDate - currentDate;
-  
-        console.log(timeDifference);
-  
-        if (timeDifference > 0) {
-          const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-          const hours = Math.floor(
-            (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-          );
-          const minutes = Math.floor(
-            (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
-          );
-          const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-  
-          setCountdown({ days, hours, minutes, seconds });
-        }
-      }
-    }
-  }, [selectedTrip, forecastData.days]);
 
   return (
     <section className={css.sidebar}>
@@ -95,17 +79,20 @@ console.log(selectedTrip)
             </li>
           ))}
         </ul>
-        {countdown.days > 0 && (
-            <div className={css.countdownContainer}>
-              <p>Countdown to Trip: </p>
-              <div className={css.countdownTimer}>
-                <span>{countdown.days}d </span>
-                <span>{countdown.hours}h </span>
-                <span>{countdown.minutes}m </span>
-                <span>{countdown.seconds}s </span>
-              </div>
-            </div>
+        <div className={css.countdown}>
+          {countdownTime !== null && countdownTime > 0 ? (
+            <p className={css.countdownText}>
+              <span className={css.countdownTimer}>
+                {Math.floor(countdownTime / (1000 * 60 * 60 * 24))} days{" "}
+                {Math.floor((countdownTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))} hours{" "}
+                {Math.floor((countdownTime % (1000 * 60 * 60)) / (1000 * 60))} minutes{" "}
+                {Math.floor((countdownTime % (1000 * 60)) / 1000)} seconds
+              </span>
+            </p>
+          ) : (
+            <p className={css.countdownText}>Trip has started!</p>
           )}
+        </div>
       </div>
     </section>
   );

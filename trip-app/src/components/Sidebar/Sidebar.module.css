@@ -87,3 +87,16 @@
 .forecastIcon {
   width: 100px;
 }
+
+.countdown {
+
+margin-top: 100px;
+}
+
+.countdownText {
+ font-size: 16px;
+ font-weight: 700;
+}
+.countdownTimer{
+  text-transform: uppercase;
+}

@@ -6,25 +6,27 @@ import { selectWeeklyForecastData } from "../../redux/forecast/forecastSelector"
 import { format, parse } from "date-fns";
 import { selectSelectedTrip } from "../../redux/trips/tripsSelector";
 
-const WeekList = ({ startDate, endDate, city, convertToDatetime }) => {
+const WeekList = () => {
   const dispatch = useDispatch();
   const forecastWeekData = useSelector(selectWeeklyForecastData);
 
   const selectedTrip = useSelector(selectSelectedTrip);
+  console.log(selectedTrip)
+
+  const convertToDatetime = (date) => {
+    return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-M-d"); 
+  }
+
 
   useEffect(() => {
     dispatch(
       fetchForecastDuringWeeks({
-        city: "Kyiv",
-        startDate: convertToDatetime("20.08.2023"),
-        endDate: convertToDatetime("30.08.2023"),
+        selectedTrip,
+        startDate: convertToDatetime("20.08.2023"), 
+        endDate: convertToDatetime("30.08.2023"), 
       })
     );
-  }, [dispatch, selectedTrip, convertToDatetime]);
-
-  useEffect(() => {
-    dispatch(fetchForecastDuringWeeks({ city, startDate, endDate }));
-  }, [dispatch, startDate, endDate, city]);
+  }, [dispatch, selectedTrip]);
 
   const weatherIcons = {
     "clear-day":

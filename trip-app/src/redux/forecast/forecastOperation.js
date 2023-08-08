@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL =
   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline";
-const YOUR_API_KEY = "GLK8SWLAL4STF5GQ38KLX9S2V";
+const YOUR_API_KEY = "GGFYVPBPF4S33MY88GH5PB8LH";
 
 export const fetchForecast = createAsyncThunk(
   "forecast/fetchForecast",

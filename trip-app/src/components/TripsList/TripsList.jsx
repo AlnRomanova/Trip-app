@@ -120,7 +120,6 @@ const TripsList = () => {
           startDate={selectedStartDate}
           endDate={selectedEndDate}
           city={selectedTrip}
-          convertToDatetime={convertToDatetime}
         />
       )}
     </>
