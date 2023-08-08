@@ -16,7 +16,7 @@ import { weeklyForecastReducer } from "./forecast/weeklyForecastSlice";
 
 const persistConfig = {
   key: "root",
-  storage,
+  storage
 };
 
 const persistedReducer = persistReducer(persistConfig, tripsReducer);

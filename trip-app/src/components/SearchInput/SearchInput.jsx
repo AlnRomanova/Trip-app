@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import css from "../SearchInput/SearchInput.module.css";
 import iconSearch from "../../images/searchIcon.svg";
 import { searchTrips } from "../../redux/trips/tripsOperation";
-import { selectStatus, selectError, selectFilteredTrips } from "../../redux/trips/tripsSelector";
+import { selectError} from "../../redux/trips/tripsSelector";
 import { toast } from "react-toastify";
 import debounce from "lodash.debounce";
 
 const SearchInput = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const dispatch = useDispatch();
-  const status = useSelector(selectStatus);
   const error = useSelector(selectError);
-  const filteredTrips = useSelector(selectFilteredTrips);
 
    useEffect(() => {
     if (error === 'No trips found for the given search query.') {
@@ -22,13 +20,6 @@ const SearchInput = () => {
     }
   }, [error]);
 
-  useEffect(() => {
-    if (status === "failed" && error && filteredTrips?.length > 0) {
-      toast.error(
-        "Sorry, there are no matches on your search, please try another query."
-      );
-    }
-  }, [status, error, filteredTrips]);
   
 // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedSearch = useCallback(

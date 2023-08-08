@@ -5,7 +5,7 @@ import { searchTrips } from "./tripsOperation";
 const initialState = {
   trips: [
     {
-      id: "25",
+      id: '25',
       startDate: "20.08.2023",
       endDate: "30.08.2023",
       city: "Kyiv",

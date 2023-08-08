@@ -16,18 +16,15 @@ import { format, parse } from "date-fns";
 import { toast } from "react-toastify";
 import { setSelectedTrip } from "../../redux/trips/tripsSlice";
 
-
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
 
-  const selectedTrip = useSelector(selectSelectedTrip);
-
   const dispatch = useDispatch();
-
+  const selectedTrip = useSelector(selectSelectedTrip);
   const trips = useSelector(sortTripsByStartDate);
-  console.log(trips)
+
   const filteredTrips = useSelector(selectFilteredTrips);
 
   useEffect(() => {
@@ -51,7 +48,7 @@ const TripsList = () => {
     currentPosition * ITEMS_PER_PAGE,
     currentPosition * ITEMS_PER_PAGE + ITEMS_PER_PAGE
   );
-  
+
   const convertToDatetime = (date) => {
     return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-MM-dd");
   };
@@ -123,6 +120,7 @@ const TripsList = () => {
           startDate={selectedStartDate}
           endDate={selectedEndDate}
           city={selectedTrip}
+          convertToDatetime={convertToDatetime}
         />
       )}
     </>

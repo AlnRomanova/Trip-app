@@ -33,8 +33,8 @@ console.log(selectedTrip)
   };
 
   useEffect(() => {
-    dispatch(fetchForecast());
-  }, [dispatch]);
+    dispatch(fetchForecast(selectedTrip));
+  }, [dispatch, selectedTrip]);
 
   const getDayOfWeek = (dateString) => {
     const date = parse(dateString, "yyyy-MM-dd", new Date());
