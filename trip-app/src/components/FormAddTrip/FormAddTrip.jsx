@@ -54,7 +54,6 @@ const FormAddTrip = ({ onCloseModal }) => {
     e.preventDefault();
     if (formData.city) {
       const formattedStartDate = format(formData.startDate, 'dd.MM.yyyy');
-      console.log(formattedStartDate)
       const formattedEndDate = format(formData.endDate, 'dd.MM.yyyy');
   
       dispatch(
@@ -72,6 +71,7 @@ const FormAddTrip = ({ onCloseModal }) => {
     }
   };
 
+  console.log(formData)
   return (
     <>
     <div className={css.formWrapper}>

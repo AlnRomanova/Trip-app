@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL =
   "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline";
-const YOUR_API_KEY = "GGFYVPBPF4S33MY88GH5PB8LH";
+const YOUR_API_KEY = "8J38STNXRRLHW48V2YPGMHYBU";
 
 export const fetchForecast = createAsyncThunk(
   "forecast/fetchForecast",
@@ -12,6 +12,7 @@ export const fetchForecast = createAsyncThunk(
       const response = await axios.get(
         `${city}/today?unitGroup=metric&include=days&key=${YOUR_API_KEY}&contentType=json`
       );
+   
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

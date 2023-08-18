@@ -20,20 +20,13 @@ const persistConfig = {
 };
 
 const persistedReducer = persistReducer(persistConfig, tripsReducer);
-const persistedCurrentForecastReducer = persistReducer(
-  persistConfig,
-  currentForecastReducer
-);
-const persistedWeeklyForecastReducer = persistReducer(
-  persistConfig,
-  weeklyForecastReducer
-);
+
 
 const store = configureStore({
   reducer: {
     trips: persistedReducer,
-    currentForecast: persistedCurrentForecastReducer,
-    weeklyForecast: persistedWeeklyForecastReducer,
+    weeklyForecast: weeklyForecastReducer,
+    currentForecast: currentForecastReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({

@@ -5,7 +5,7 @@ import sidebarImage from "../../images/icons8-penguin-64.png";
 import { fetchForecast } from "../../redux/forecast/forecastOperation";
 import { selectCurrentForecastData } from "../../redux/forecast/forecastSelector";
 import { format, parse } from "date-fns";
-import { selectAllTrips, selectSelectedTrip, selectTrips } from "../../redux/trips/tripsSelector";
+import { selectAllTrips, selectSelectedTrip } from "../../redux/trips/tripsSelector";
 
 const Sidebar = () => {
 
@@ -61,7 +61,7 @@ console.log(selectedTrip)
       <img className={css.sidebarImg} src={sidebarImage} alt="Add Trip Icon" />
       <div className={css.sidebarContainer}>
         <ul className={css.siderbarList}>
-          {forecastData.days?.map(({ icon, temp, datetime }, index) => (
+          {forecastData.days?.map(({ icon, tempmax, datetime }, index) => (
             <li className={css.sidebarItem} key={index}>
               <p className={css.sidebarDayOfWeek}>{getDayOfWeek(datetime)}</p>
               <div className={css.sidebarDegreesWrap}>
@@ -71,7 +71,7 @@ console.log(selectedTrip)
                   className={css.forecastIcon}
                 />
                 <div className={css.sidebarTemp}>
-                  <p className={css.sidebarTempValue}>{temp}</p>
+                  <p className={css.sidebarTempValue}>{tempmax}</p>
                   <p className={css.sidebarTempUnit}>°C</p>
                 </div>
               </div>

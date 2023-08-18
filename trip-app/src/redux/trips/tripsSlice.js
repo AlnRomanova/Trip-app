@@ -1,16 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addTrip } from "./tripsOperation";
 import { searchTrips } from "./tripsOperation";
+import { nanoid } from 'nanoid';
 
 const initialState = {
   trips: [
     {
-      id: '25',
-      startDate: "20.08.2023",
-      endDate: "30.08.2023",
+      id: nanoid(),
       city: "Kyiv",
-      photo: "https://lp-cms-production.imgix.net/2019-06/a6469f3993128cbcdde6e2b0a90aa1d3-kyiv.jpg",
-    },
+      startDate: "21.08.2023",
+      endDate: "30.08.2023",
+      photo: "https://lp-cms-production.imgix.net/2019-06/a6469f3993128cbcdde6e2b0a90aa1d3-kyiv.jpg"
+    }
   ],
   filteredTrips: [],
   status: "idle",

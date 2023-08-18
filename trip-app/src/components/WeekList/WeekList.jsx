@@ -13,18 +13,12 @@ const WeekList = () => {
   const selectedTrip = useSelector(selectSelectedTrip);
   console.log(selectedTrip)
 
-  const convertToDatetime = (date) => {
-    return format(parse(date, "dd.MM.yyyy", new Date()), "yyyy-M-d"); 
-  }
-
 
   useEffect(() => {
     dispatch(
-      fetchForecastDuringWeeks({
-        selectedTrip,
-        startDate: convertToDatetime("20.08.2023"), 
-        endDate: convertToDatetime("30.08.2023"), 
-      })
+      fetchForecastDuringWeeks(
+        selectedTrip
+      )
     );
   }, [dispatch, selectedTrip]);
 

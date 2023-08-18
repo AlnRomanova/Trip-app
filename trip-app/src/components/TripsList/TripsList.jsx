@@ -15,15 +15,20 @@ import {
 import { format, parse } from "date-fns";
 import { toast } from "react-toastify";
 import { setSelectedTrip } from "../../redux/trips/tripsSlice";
+import { TfiAngleLeft, TfiAngleRight } from "react-icons/tfi";
 
 const TripsList = () => {
   const [currentPosition, setCurrentPosition] = useState(0);
   const [selectedStartDate, setSelectedStartDate] = useState(null);
   const [selectedEndDate, setSelectedEndDate] = useState(null);
 
+
+
   const dispatch = useDispatch();
   const selectedTrip = useSelector(selectSelectedTrip);
   const trips = useSelector(sortTripsByStartDate);
+
+  console.log(trips)
 
   const filteredTrips = useSelector(selectFilteredTrips);
 
@@ -99,22 +104,22 @@ const TripsList = () => {
         ))}
         <ButtonAddTrip />
       </ul>
-      <div className={css.sliderButtons}>
+     
         <button
           className={css.prevButton}
           onClick={handlePrevious}
           disabled={currentPosition === 0}
         >
-          Previous
+           <TfiAngleLeft className={css.iconBtn}/>
         </button>
         <button
           className={css.nextButton}
           onClick={handleNext}
           disabled={currentPosition >= trips?.length / ITEMS_PER_PAGE - 1}
-        >
-          Next
+        >  
+    <TfiAngleRight className={css.iconBtn}/>
         </button>
-      </div>
+
       {selectedTrip && (
         <WeekList
           startDate={selectedStartDate}
